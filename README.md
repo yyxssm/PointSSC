@@ -123,6 +123,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 bash ./scripts/dist_train_seg.sh 4 13232 --config .
 ## 🗃️ Dataset Tutorial
 The PointSSC dataset is further developed based on the V2X-Seq dataset (https://thudair.baai.ac.cn/coop-forecast). The raw images and partial point cloud data can be directly obtained from the official website of the V2X-Seq dataset, and our link only contains the GT PointSSC labels.
 
+Due to insufficient cloud storage space, I have provided a [PointSSC-Example file](https://drive.google.com/file/d/18GufPjIN80PdjM2VGIqqwFWa8I5-Gmia/view?usp=drive_link) on Google Drive. If you need the full dataset (approximately 32GB), please email me, and I will provide you with a personal data transfer link via [Alibaba Cloud Drive](https://www.alipan.com/).
+
 It should be noted that due to the inertia during vehicle movement, there are some calibration errors in the on-board sensors of the V2X-Seq data collection vehicle, especially when the vehicle is turning, where the extrinsic sensor calibration errors are more prominent. These errors can lead to ghosting and artifacts during the temporal stitching of point cloud data. We have attempted to use point cloud registration algorithms for correction, but the results were not ideal. Therefore, we have adopted a random sampling approach to mitigate this issue as much as possible.
 
 The final data root should be like
@@ -138,8 +140,7 @@ V2X-Seq-SPD
     ├── vehicle-side
     ├── completion_data (PointSSC provided)
     ├── cooperative
-    ├── infrastructure-side
-    └── maps
+    └── infrastructure-side
 ```
 
 ## 📜 License
