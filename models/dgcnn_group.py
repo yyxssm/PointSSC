@@ -19,7 +19,6 @@ from mmcv.ops.knn import knn
 #     _, group_idx = torch.topk(sqrdists, nsample, dim = -1, largest=False, sorted=False)
 #     return group_idx
 
-# 基于mvcc的knn算法，减少显存占用
 def knn_point(nsample, xyz, new_xyz, transposed=False):
     """
     Args:

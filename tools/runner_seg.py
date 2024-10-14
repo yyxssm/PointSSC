@@ -246,8 +246,9 @@ def validate(base_model, test_dataloader, epoch, ChamferDisL1, ChamferDisL2, val
             dense_loss_l1 =  ChamferDisL1(dense_points, gt_points)
             dense_loss_l2 =  ChamferDisL2(dense_points, gt_points)
 
-            # 计算ce loss
-            # seg_logit有可能是coarse point的语义分割，也可能是fine点的分割结果，所以用if-else进行判断
+            # ce loss
+            # seg_logit could either be the semantic segmentation of the coarse points or the segmentation result of the fine points,
+            # so an if-else statement is used to determine which one.
             if seg_logit.shape[2] <= 13312:
                 _, coarse_idx = ChamferDistanceL1AndSeg()(coarse_points, gt_points)
                 gt_label = torch.gather(gt_seg, 1, coarse_idx.long())
@@ -304,7 +305,7 @@ def validate(base_model, test_dataloader, epoch, ChamferDisL1, ChamferDisL2, val
                             (idx + 1, n_samples, taxonomy_id, model_id, ['%.4f' % l for l in test_losses.val()], 
                             ['%.4f' % m for m in _metrics]), logger=logger)
         
-        # 进行点云语义分割mIoU计算
+        # Perform mIoU calculation for point cloud semantic segmentation
         dense_points_list = torch.concat(dense_points_list, dim=0)
         gt_points_list = torch.concat(gt_points_list, dim=0)
         fine_seg_list = torch.concat(fine_seg_list, dim=0)
@@ -424,30 +425,14 @@ def test(base_model, test_dataloader, ChamferDisL1, ChamferDisL2, args, config, 
                 fine_seg_list.append(fine_seg)
                 gt_seg_list.append(gt_seg)
                 
-                # # 进行模型输出的保存
-                # print("Saving model output...")
-                # point_save_dir = "./{}/vis/point_cloud".format(args.experiment_path)
-                # seg_save_dir = "./{}/vis/semantic_label".format(args.experiment_path)
-                # os.makedirs(point_save_dir, exist_ok=True)
-                # os.makedirs(seg_save_dir, exist_ok=True)
-                # # 保存点云
-                # dense_points.cpu().numpy().astype(np.float32).tofile("{}/{}_dense.bin".format(point_save_dir, model_id))
-                # # 保存语义标签
-                # if seg_logit.shape[2] <= 13312:
-                #     # coarse_points.cpu().numpy().astype(np.float32).tofile("{}/{}_coarse.bin".format(point_save_dir, model_id))
-                #     # coarse_seg_output = seg_logit.max(1)[1]
-                #     # coarse_seg_output.cpu().numpy().astype(np.uint8).tofile("{}/{}_coarse.bin".format(seg_save_dir, model_id))
-                #     fine_seg.cpu().numpy().astype(np.uint8).tofile("{}/{}_dense.bin".format(seg_save_dir, model_id))
-                # else:
-                #     fine_seg.cpu().numpy().astype(np.uint8).tofile("{}/{}_dense.bin".format(seg_save_dir, model_id))
-
                 sparse_loss_l1 =  ChamferDisL1(coarse_points, gt_points)
                 sparse_loss_l2 =  ChamferDisL2(coarse_points, gt_points)
                 dense_loss_l1 =  ChamferDisL1(dense_points, gt_points)
                 dense_loss_l2 =  ChamferDisL2(dense_points, gt_points)
                 
-                # 计算ce loss
-                # seg_logit有可能是coarse point的语义分割，也可能是fine点的分割结果，所以用if-else进行判断
+                # ce loss
+                # seg_logit could either be the semantic segmentation of the coarse points or the segmentation result of the fine points,
+                # so an if-else statement is used to determine which one.
                 if seg_logit.shape[2] <= 13312:
                     _, coarse_idx = ChamferDistanceL1AndSeg()(coarse_points, gt_points)
                     gt_label = torch.gather(gt_seg, 1, coarse_idx.long())
@@ -524,7 +509,7 @@ def test(base_model, test_dataloader, ChamferDisL1, ChamferDisL2, args, config, 
         if dataset_name == 'KITTI':
             return
         
-        # 进行点云语义分割mIoU计算
+        # Perform mIoU calculation for point cloud semantic segmentation.
         dense_points_list = torch.concat(dense_points_list, dim=0)
         gt_points_list = torch.concat(gt_points_list, dim=0)
         fine_seg_list = torch.concat(fine_seg_list, dim=0)

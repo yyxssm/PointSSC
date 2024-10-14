@@ -12,3 +12,5 @@ timm  # if you're on newer versions of python / mamba / conda, installing may th
 tqdm
 transforms3d
 einops
+mmengine==0.7.4
+mmcv==2.0.0

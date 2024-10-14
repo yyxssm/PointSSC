@@ -1,0 +1,8 @@
+NAME: V2XSeqSPD
+DATA_PATH: data/V2X-Seq-SPD/time_split
+PC_PATH: data/V2X-Seq-SPD/V2X-Seq-SPD/infrastructure-side
+GT_PATH: data/V2X-Seq-SPD/V2X-Seq-SPD/completion_data/point_cloud
+COLOR_PATH: data/V2X-Seq-SPD/V2X-Seq-SPD/completion_data/semantic_label
+TEST_JSON: data/V2XSeqSPD_time_split.json
+INPUT_POINTS: 26624
+N_POINTS: 212992

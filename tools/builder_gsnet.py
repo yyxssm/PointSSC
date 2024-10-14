@@ -18,13 +18,13 @@ def collate_fn_projected_shapenet(batch):
     model_ids = [item[1] for item in batch]
     partial_data = [item[2].clone().detach() for item in batch]
     gt_data = [item[3].clone().detach() for item in batch]
-    # 如果没有构建gnn，那么就随便搞一个东西来补位
+    # If the GNN hasn't been built, then just create something arbitrary to fill in its place.
     try:
         adjs = [item[4].clone().detach() for item in batch]
     except IndexError:
         adjs = [torch.tensor((0,1)) for item in batch]
 
-    # # 使用 pad_sequence 对 partial_data 和 gt_data 进行填充
+    # Use pad_sequence to pad partial_data and gt_data
     # taxonomy_ids = np.squeeze(taxonomy_ids)
     partial_data = pad_sequence(partial_data, batch_first=True)
     gt_data = pad_sequence(gt_data, batch_first=True)
@@ -32,16 +32,15 @@ def collate_fn_projected_shapenet(batch):
 
     return taxonomy_ids, model_ids, adjs, (partial_data, gt_data)
 
-
 def collate_fn_shapenet(batch):
     taxonomy_ids = [item[0] for item in batch]
     model_ids = [item[1] for item in batch]
-    # 对于shapenet55类别来说，partial_data是需要进行fps采样的，所以采样代码在runner里，所以这里只有gt
+    # For the shapenet55 category, partial_data needs to be sampled using FPS, and the sampling code is in the runner, so only gt is here
     gt_data = [item[2].clone().detach() for item in batch]
-    # shapenet数据集是没有adj的，因为对于partial points的adj，需要先FPS采样之后才能得到，所以放到runner里面了
+    # The shapenet dataset does not have adj because for the adj of partial points, it can only be obtained after FPS sampling, so it's placed in the runner
     adjs = [torch.tensor((0,1)) for item in batch]
 
-    # # 使用 pad_sequence 对 partial_data 和 gt_data 进行填充
+    # Use pad_sequence to pad partial_data and gt_data
     # taxonomy_ids = np.squeeze(taxonomy_ids)
     gt_data = pad_sequence(gt_data, batch_first=True)
     adjs = pad_sequence(adjs, batch_first=True)

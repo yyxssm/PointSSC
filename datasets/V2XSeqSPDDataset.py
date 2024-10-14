@@ -23,8 +23,8 @@ class V2XSeqSPD(data.Dataset):
     def __init__(self, config):
         self.data_root = config.DATA_PATH
         self.pc_path = config.PC_PATH
-        self.gt_path = config.GT_PATH # 新加入点云的文件夹路径
-        self.color_path = config.COLOR_PATH #新加入点云标签文件夹路径
+        self.gt_path = config.GT_PATH
+        self.color_path = config.COLOR_PATH
         self.subset = config.subset
         self.pkl_file_path = os.path.join(self.data_root, f'{self.subset}.pkl')
         self.input_num = config.INPUT_POINTS
