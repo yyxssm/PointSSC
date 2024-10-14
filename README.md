@@ -156,3 +156,17 @@ Some of the code of this repo is borrowed from:
 
 
 We thank the authors for their great job!
+
+
+## 📖 Citation
+If you find this project useful in your research, please consider cite:
+```
+@inproceedings{yan2024pointssc,
+  title={PointSSC: A Cooperative Vehicle-Infrastructure Point Cloud Benchmark for Semantic Scene Completion},
+  author={Yan, Yuxiang and Liu, Boda and Ai, Jianfei and Li, Qinbu and Wan, Ru and Pu, Jian},
+  booktitle={2024 IEEE International Conference on Robotics and Automation (ICRA)},
+  pages={17027--17034},
+  year={2024},
+  organization={IEEE}
+}
+```
