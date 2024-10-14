@@ -17,8 +17,8 @@ Our [paper](https://arxiv.org/abs/2309.12708) has been accepted by ICRA2024.
 Quantitative comparison of our models on PointSSC dataset. CD Means Chamfer Distance(Multiplied By 1000), lower is better. F1-score@0.3 means calculating by distance threshold 0.3.
 | Config          | Model | CD (L1) ↓ | CD (L2) ↓ | F1-Score@0.3 ↑ |
 | --------------- | ----- | --------- | --------- | -------------- |
-| Time-splitting  | [Download Model](https://drive.google.com/file/d/1F9-PQSSefCRT_c7kyzIIjPAlh8Ge8QEv/view?usp=drive_link) | 208.94    | 248.28    | 81.42%         |
-| Sceme-splitting | [Download Model](https://drive.google.com/file/d/1aEj2bOpJFxaNiO7Fh3MRfZiZXwqGugmr/view?usp=drive_link) | 410.92    | 1413.60   | 63.57%          |
+| [Time-splitting](https://github.com/yyxssm/PointSSC/blob/main/cfgs/V2XSeqSPD_models/PointSSC.yaml)  | [Download Model](https://drive.google.com/file/d/1F9-PQSSefCRT_c7kyzIIjPAlh8Ge8QEv/view?usp=drive_link) | 208.94    | 248.28    | 81.42%         |
+| [Scene-splitting](https://github.com/yyxssm/PointSSC/blob/main/cfgs/V2XSeqSPD_SceneSplit_models/PointSSC.yaml) | [Download Model](https://drive.google.com/file/d/1aEj2bOpJFxaNiO7Fh3MRfZiZXwqGugmr/view?usp=drive_link) | 410.92    | 1413.60   | 63.57%          |
 
 
 ## 💻 Code Tutorial
