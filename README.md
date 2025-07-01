@@ -121,9 +121,11 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 bash ./scripts/dist_train_seg.sh 4 13232 --config .
 ![model](docs/experiments.png)
 
 ## 🗃️ Dataset Tutorial
-The PointSSC dataset is further developed based on the V2X-Seq dataset (https://thudair.baai.ac.cn/coop-forecast). The raw images and partial point cloud data can be directly obtained from the official website of the V2X-Seq dataset, and our link only contains the GT PointSSC labels.
+The PointSSC dataset is further developed based on the [V2X-Seq dataset](https://thudair.baai.ac.cn/coop-forecast). The raw images and partial point cloud data can be directly obtained from the official website of the V2X-Seq dataset, and our link only contains the GT PointSSC labels.
 
-Due to insufficient Google cloud storage space, I have provided a [PointSSC-Example file](https://drive.google.com/file/d/18GufPjIN80PdjM2VGIqqwFWa8I5-Gmia/view?usp=drive_link) on Google Drive. You can download the PointSSC completion dataset through [BaiDuYun](https://pan.baidu.com/s/1nNG7hOmat47Hdl4aBlHe3w?pwd=n6k6) (code: n6k6).
+We cropped the infrastructure-side point clouds in the V2X-Seq dataset, keeping only the points within the camera's field of view. You can download our filtered infrastructure-side raw point clouds here [BaiDuYun](https://pan.baidu.com/s/1Y4327DoB-yQqt7ZKbCHD0Q?pwd=qk2x) (code: qk2x).
+
+Due to insufficient Google cloud storage space, I have provided a [PointSSC-Example file](https://drive.google.com/file/d/18GufPjIN80PdjM2VGIqqwFWa8I5-Gmia/view?usp=drive_link) on Google Drive. You can download the PointSSC completion dataset through [BaiDuYun](https://pan.baidu.com/s/1n_a5QwRe3DF1TBEQjp-29w?pwd=r4w8) (code: r4w8).
 
 It should be noted that due to the inertia during vehicle movement, there are some calibration errors in the on-board sensors of the V2X-Seq data collection vehicle, especially when the vehicle is turning, where the extrinsic sensor calibration errors are more prominent. These errors can lead to ghosting and artifacts during the temporal stitching of point cloud data. We have attempted to use point cloud registration algorithms for correction, but the results were not ideal. Therefore, we have adopted a random sampling approach to mitigate this issue as much as possible.
 
